@@ -119,3 +119,53 @@ for (var k in myMap.keys) {
 print("$k: ${myMap[k]}");
 }
 ```
+## class
+### class 基础 [day2/demo1.dart]
+```
+class User {
+  String username;
+  int uuid;
+  User(this.username,this.uuid);
+}
+dart 默认是隐式get/set
+```
+### class 继承相关 && 接口抽象 && 泛型 && 枚举 [day2/demo2.dart]
+继承:
+子类之基础父类不带参构造方法
+如果父类没有不带参构造就会出错
+接口:
+Dart语言没有提供interface关键字来定义接口，但是Dart语言中保留了抽象类，同Java，使用abstract关键字来修饰抽象类。而Dart中的抽象类，实际上就相当于Java中的接口。
+泛型:
+```
+class Utt<T> {
+  T element;
+  void put(T element) {
+    this.element = element;
+  }
+}
+
+void test3() {
+  var utt = Utt<String>();
+  utt.put("sssss");
+  print(utt.element);
+}
+```
+枚举:
+```
+enum Month{
+  January,
+  February,
+}
+
+Month.February;
+```
+### 异常处理 & 库导入导出 [day2/demo3.dart]
+异常处理:
+1.如果关心具体异常，针对不同异常进行不同处理，可以使用try...on处理异常，finally是可选的，用于最后的处理。
+2.不关心具体异常，只想捕获，避免异常继续传递，则可以使用try...catch处理
+导入：
+为了减少 APP 的启动时间，加载很少使用的功能，我们还可以延迟导入库。使用 deferred as关键字延迟导入
+`import 'package:deferred/hello.dart' deferred as hello;`
+
+### 异步  (非共享内存的协程) [day2/demo4.dart]
+Dart中的所有代码都只在一个线程上运行，但Dart代码可以运行在多个isolate上。isolate可以看做一个微小的线程，isolate由虚拟机调度，isolate之间没有共享内存，因此它们之间没有竞争
